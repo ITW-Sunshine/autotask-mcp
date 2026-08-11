@@ -9,7 +9,7 @@
 import { resolveAutotaskApiUrl } from '../utils/config';
 import { AutotaskHttpClient, QueryFilter } from './autotask-http';
 import {
-  AutotaskContactQueryOptions,
+  AutotaskPersonQueryOptions,
   AutotaskCompany,
   AutotaskContact,
   AutotaskTicket,
@@ -258,7 +258,7 @@ export class AutotaskService {
     }
   }
 
-  async searchContacts(options: AutotaskContactQueryOptions = {}): Promise<AutotaskContact[]> {
+  async searchContacts(options: AutotaskPersonQueryOptions = {}): Promise<AutotaskContact[]> {
     const http = await this.ensureClient();
     try {
       this.logger.debug('Searching contacts with options:', options);
@@ -854,20 +854,16 @@ export class AutotaskService {
     }
   }
 
-  async searchResources(options: AutotaskQueryOptions = {}): Promise<AutotaskResource[]> {
+  async searchResources(options: AutotaskPersonQueryOptions = {}): Promise<AutotaskResource[]> {
     const http = await this.ensureClient();
     try {
       this.logger.debug('Searching resources with options:', options);
       const filters: QueryFilter[] = [];
-      if (options.searchTerm) {
-        filters.push({
-          op: 'or',
-          items: [
-            { op: 'contains', field: 'email', value: options.searchTerm },
-            { op: 'contains', field: 'firstName', value: options.searchTerm },
-            { op: 'contains', field: 'lastName', value: options.searchTerm }
-          ]
-        });
+      if (options.firstName) {
+        filters.push({ op: 'contains', field: 'firstName', value: options.firstName });
+      }
+      if (options.lastName){
+        filters.push({ op: 'contains', field: 'lastName', value: options.lastName } )
       }
       const pageSize = Math.min(options.pageSize || 25, 500);
       const resources = await http.query<AutotaskResource>(

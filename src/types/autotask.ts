@@ -557,7 +557,7 @@ export interface AutotaskQueryOptions {
   isActive?: boolean | number;
 }
 
-export interface AutotaskContactQueryOptions{
+export interface AutotaskPersonQueryOptions{
     filter?: Record<string, any>;
   sort?: string;
   page?: number;
