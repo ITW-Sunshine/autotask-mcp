@@ -1085,9 +1085,13 @@ export const TOOL_DEFINITIONS: McpTool[] = [
     inputSchema: {
       type: 'object',
       properties: {
-        searchTerm: {
+        firstName: {
           type: 'string',
-          description: 'Search term for resource name or email'
+          description: 'First Name of the resource'
+        },
+        lastName: {
+          type: 'string',
+          description: 'Last Name of the resource'
         },
         isActive: {
           type: 'boolean',
