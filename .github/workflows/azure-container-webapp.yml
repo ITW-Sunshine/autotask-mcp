@@ -70,7 +70,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v6
         env:
-            NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
+            GITHUB_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
         with:
           context: .
           platforms: linux/amd64
