@@ -65,12 +65,10 @@ jobs:
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
-          password: ${{ github.token }}
+          password: ${{ secrets.NODE_AUTH_TOKEN }}
 
       - name: Build and push
         uses: docker/build-push-action@v6
-        env:
-            GITHUB_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
         with:
           context: .
           platforms: linux/amd64
