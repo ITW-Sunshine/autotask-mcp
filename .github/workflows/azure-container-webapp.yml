@@ -54,7 +54,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ghcr.io/itw-sunshine/autotask-mcp
+          images: ghcr.io/${{ env.IMAGE }}
           tags: |
             type=raw,value=latest
 
@@ -94,5 +94,5 @@ jobs:
           az containerapp update \ 
           --name ${{ env.CONTAINERAPP_NAME }} \
           --resource-group ${{ env.RESOURCE_GROUP }} \
-          --image ${{ env.REGISTRY }}/itw-sunshine/autotask-mcp:latest
+          --image ${{ env.REGISTRY }}/${{ env.IMAGE }}:latest
       
