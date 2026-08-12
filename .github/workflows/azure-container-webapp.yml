@@ -92,5 +92,5 @@ jobs:
         with: 
           azcliversion: latest
           inlineScript: |
-            az containerapp update --name ${{ env.CONTAINERAPP_NAME }} --resource-group ${{ env.RESOURCE_GROUP }} --image ${{ env.REGISTRY }}/${{ env.IMAGE }}:latest
+            az containerapp update --name ${{ env.CONTAINERAPP_NAME }} --resource-group ${{ env.RESOURCE_GROUP }} --image ghcr/itw-sunshine/autotask-mcp:latest
       
