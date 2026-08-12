@@ -87,10 +87,13 @@ jobs:
           client-secret: ${{ secrets.AZURE_CLIENT_SECRET }}
 
           
-      - name: Update Container App
-        run: |
-          az containerapp update \ 
-          --name ${{ env.CONTAINERAPP_NAME }} \
-          --resource-group ${{ env.RESOURCE_GROUP }} \
-          --image ${{ env.REGISTRY }}/${{ env.IMAGE }}:latest
+      - uses: azure/cli@v2
+        name: Update Container App
+        with: 
+          azcliversion: latest
+          inlineScript: |
+            az containerapp update \ 
+              --name ${{ env.CONTAINERAPP_NAME }} \
+              --resource-group ${{ env.RESOURCE_GROUP }} \
+              --image ${{ env.REGISTRY }}/${{ env.IMAGE }}:latest
       
