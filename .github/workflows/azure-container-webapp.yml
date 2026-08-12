@@ -78,6 +78,8 @@ jobs:
           tags: |
             ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+          build-args: |
+            GITHUB_TOKEN=${{ secrets.NODE_AUTH_TOKEN }}
     
       - uses: azure/login@v2
         with:
