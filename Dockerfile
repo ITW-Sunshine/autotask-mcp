@@ -5,6 +5,7 @@ FROM node:26-alpine AS builder
 ARG VERSION="unknown"
 ARG COMMIT_SHA="unknown"
 ARG BUILD_DATE="unknown"
+ARG GITHUB_TOKEN
 
 # node:22-alpine ships with npm 10.x — no need to install globally
 # Set working directory
